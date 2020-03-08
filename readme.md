@@ -4,7 +4,7 @@
 
 ## Vim configuration
 
-Copy `tex.snippets` to `~/.vim/UltiSnips/` and asuming you're using [Vim Plug](https://github.com/junegunn/vim-plug), add the following to your `.vimrc`:
+Copy `tex.snippets` to `~/.vim/UltiSnips/` and assuming you're using [Vim Plug](https://github.com/junegunn/vim-plug), add the following to your `.vimrc`:
 
 ```vim
 Plug 'sirver/ultisnips'
@@ -20,10 +20,21 @@ Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim'
     set conceallevel=1
     let g:tex_conceal='abdmg'
+    hi Conceal ctermbg=none
 
 setlocal spell
 set spelllang=en_us
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 ```
+
+For the colorscheme, install [pywal](https://github.com/dylanaraps/pywal), add the following to your `.vimrc`
+
+```vim
+Plug 'dylanaraps/wal'
+colorscheme wal
+set background=dark
+```
+
+Finally, execute `wal --theme base16-nord`.
 
 Something not working as expected? Feel free to open an issue!
