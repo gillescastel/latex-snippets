@@ -112,7 +112,7 @@ snippet iff "iff" Ai
 endsnippet
 
 snippet mk "Math" wA
-$${1}$`!p
+\(${1}\)`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
 	snip.rv = ' '
 else:
@@ -389,10 +389,6 @@ snippet xmm "x" iA
 x_{m}
 endsnippet
 
-snippet R0+ "R0+" iA
-\\R_0^+
-endsnippet
-
 snippet plot "Plot" w
 \begin{figure}[$1]
 	\centering
@@ -532,10 +528,6 @@ snippet inn "in " iA
 \in 
 endsnippet
 
-snippet NN "n" iA
-\N
-endsnippet
-
 snippet Nn "cap" iA
 \cap 
 endsnippet
@@ -552,21 +544,78 @@ snippet nnn "bigcap" iA
 \bigcap_{${1:i \in ${2: I}}} $0
 endsnippet
 
+context "math()"
 snippet OO "emptyset" iA
-\O
+\emptyset
+endsnippet
+
+snippet OO "emptyset" iA
+\(\emptyset\)
+endsnippet
+
+context "math()"
+snippet RR "real" iA
+\mathbb{R}
 endsnippet
 
 snippet RR "real" iA
-\R
+\(\mathbb{R}\)
+endsnippet
+
+context "math()"
+snippet R0+ "R0+" iA
+\mathbb{R}_0^+
+endsnippet
+
+snippet R0+ "R0+" iA
+\(\mathbb{R}_0^+\)
+endsnippet
+
+context "math()"
+snippet QQ "Q" iA
+\mathbb{Q}
 endsnippet
 
 snippet QQ "Q" iA
-\Q
+\(\mathbb{Q}\)
+endsnippet
+
+context "math()"
+snippet ZZ "Z" iA
+\mathbb{Z}
 endsnippet
 
 snippet ZZ "Z" iA
-\Z
+\(\mathbb{Z}\)
 endsnippet
+
+context "math()"
+snippet NN "n" iA
+\mathbb{N}
+endsnippet
+
+snippet NN "n" iA
+\(\mathbb{N}\)
+endsnippet
+
+context "math()"
+snippet HH "H" iA
+\mathbb{H}
+endsnippet
+
+snippet HH "H" iA
+\(\mathbb{H}\)
+endsnippet
+
+context "math()"
+snippet DD "D" iA
+\mathbb{D}
+endsnippet
+
+snippet DD "D" iA
+\(\mathbb{D}\)
+endsnippet
+
 
 snippet <! "normal" iA
 \triangleleft 
@@ -634,16 +683,7 @@ snippet "([a-zA-Z])hat" "hat" riA
 endsnippet
 
 snippet letw "let omega" iA
-Let $\Omega \subset \C$ be open.
-endsnippet
-
-
-snippet HH "H" iA
-\mathbb{H}
-endsnippet
-
-snippet DD "D" iA
-\mathbb{D}
+Let \(\Omega \subset \C\) be open.
 endsnippet
 
 # vim:ft=snippets
