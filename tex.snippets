@@ -7,8 +7,8 @@ def math():
 	synstackNames = vim.eval("map(synstack(line('.'), max([col('.') - 1, 1])), 'synIDattr(v:val, ''name'')')")
 	try:
 		first = next(
-            i for i in reversed(synstackNames)
-            if (synstackNames[i].find(z) == 0 for z in texZones)
+            n for n in reversed(synstackNames)
+            if any(n.find(z) == 0 for z in texZones)
         )
 		return any(first.find(z) == 0 for z in texMathZones)
 	except StopIteration:
