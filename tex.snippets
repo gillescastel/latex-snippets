@@ -200,6 +200,18 @@ snip.rv = subprocess.check_output(['wolframscript', '-code', code])
 `
 endsnippet
 
+priority 10000                                                                                                   
+snippet '^(.*(?:= |\$))(.*)=?\s*$' "latex-sympy-calculator-expression" wr                                          
+`!p                                                                                                              
+prefix = match.group(1)
+code = match.group(2)
+from latex2sympy2 import latex2latex, latex2sympy, var, variances, set_variances, set_real, latex
+from sympy import *
+from sympy.abc import *
+snip.rv = prefix + code + ' = ' + latex(factor(latex2sympy(code).subs(variances)))
+`                        
+endsnippet
+
 snippet == "equals" iA
 &= $1 \\\\
 endsnippet
