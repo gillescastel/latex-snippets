@@ -202,65 +202,37 @@ endsnippet
 
 priority 10000
 context "math()"
-snippet '^(.*(?:= |\$))(.*)[^\s=]\s*$' "latex-sympy-calculator-inline" wr
+snippet '^(.*(?:= |\$))(.*[^\s=])\s*$' "latex-sympy-calculator-expression" wr
 `!p
+import re
+from latex2sympy2 import latex2latex, latex2sympy, var, variances, set_variances, set_real, latex
+from sympy import simplify
 prefix = match.group(1)
 code = match.group(2)
-from latex2sympy2 import latex2latex, latex2sympy, var, variances, set_variances, set_real, latex
-from sympy import *
-from sympy.abc import *
+reg = re.match(r'^(.*)\&\s*=(?:.*)$', prefix)
+sep = '\n' + ' ' * len(reg.group(1)) + '&= ' if reg else ' = '
 try:
-	snip.rv = prefix + code + ' = ' + latex(factor(latex2sympy(code).subs(variances)))
+	snip.rv = prefix + code + sep + latex(simplify(latex2sympy(code).subs(variances)))
 except:
-	snip.rv = prefix + code + ' = '
+	snip.rv = prefix + code + sep
 `
 endsnippet
 
 priority 10000
 context "math()"
-snippet '^(.*(?:&\s?=))(.*)[^\s=]\s*$' "latex-sympy-calculator-block" wr
+snippet '^(.*(?:= |\$))(.*)=\s*$' "latex-sympy-calculator-numeric" wr
 `!p
+import re
+from latex2sympy2 import latex2latex, latex2sympy, var, variances, set_variances, set_real, latex
+from sympy import simplify
 prefix = match.group(1)
 code = match.group(2)
-from latex2sympy2 import latex2latex, latex2sympy, var, variances, set_variances, set_real, latex
-from sympy import *
-from sympy.abc import *
+reg = re.match(r'^(.*)\&\s*=(?:.*)$', prefix)
+sep = '\n' + ' ' * len(reg.group(1)) + '&= ' if reg else ' = '
 try:
-	snip.rv = prefix + code + '\n&= ' + latex(factor(latex2sympy(code).subs(variances)))
+	snip.rv = prefix + code + sep + latex(simplify(latex2sympy(code).subs(variances).doit().doit()).evalf(subs=variances))
 except:
-	snip.rv = prefix + code + '\n&= '
-`
-endsnippet
-
-priority 10000
-context "math()"
-snippet '^(.*(?:= |\$))(.*)=\s*$' "latex-sympy-calculator-inline-numeric" wr
-`!p
-prefix = match.group(1)
-code = match.group(2)
-from latex2sympy2 import latex2latex, latex2sympy, var, variances, set_variances, set_real, latex
-from sympy import *
-from sympy.abc import *
-try:
-	snip.rv = prefix + code + '= ' + latex(simplify(latex2sympy(code).subs(variances).doit().doit()).evalf(subs=variances))
-except:
-	snip.rv = prefix + code + '= '
-`
-endsnippet
-
-priority 10000
-context "math()"
-snippet '^(.*(?:&\s?=))(.*)=\s*$' "latex-sympy-calculator-block" wr
-`!p
-prefix = match.group(1)
-code = match.group(2)
-from latex2sympy2 import latex2latex, latex2sympy, var, variances, set_variances, set_real, latex
-from sympy import *
-from sympy.abc import *
-try:
-	snip.rv = prefix + code + '\n&= ' + latex(simplify(latex2sympy(code).subs(variances).doit().doit()).evalf(subs=variances))
-except:
-	snip.rv = prefix + code + '\n&= '
+	snip.rv = prefix + code + sep
 `
 endsnippet
 
